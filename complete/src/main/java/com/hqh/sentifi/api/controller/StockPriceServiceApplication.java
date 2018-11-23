@@ -1,13 +1,13 @@
-package hello;
+package com.hqh.sentifi.api.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HelloWorldApplication {
+public class StockPriceServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HelloWorldApplication.class, args);
+		SpringApplication.run(StockPriceServiceApplication.class, args);
 	}
 
 }

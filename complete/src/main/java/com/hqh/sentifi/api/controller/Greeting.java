@@ -1,4 +1,4 @@
-package hello;
+package com.hqh.sentifi.api.controller;
 
 public class Greeting {
 

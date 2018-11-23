@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package hello;
-
-import java.util.Map;
+package com.hqh.sentifi.api.controller;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +27,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Map;
+
 import static org.assertj.core.api.BDDAssertions.then;
 
 /**
@@ -39,7 +39,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = {"management.port=0"})
-public class HelloWorldApplicationTests {
+public class StockPriceServiceApplicationTests {
 
 	@LocalServerPort
 	private int port;
@@ -50,22 +50,22 @@ public class HelloWorldApplicationTests {
 	@Autowired
 	private TestRestTemplate testRestTemplate;
 
+
 	@Test
-	public void shouldReturn200WhenSendingRequestToController() throws Exception {
-		@SuppressWarnings("rawtypes")
+	public void shouldReturn200WhenSendingRequestToController() {
 		ResponseEntity<Map> entity = this.testRestTemplate.getForEntity(
-				"http://localhost:" + this.port + "/hello-world", Map.class);
+				"http://localhost:" + this.port + "/api/v2/GE/closePrice?startDate=2018-11-10&&endDate=2018-11-11", Map.class);
 
 		then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
-	@Test
-	public void shouldReturn200WhenSendingRequestToManagementEndpoint() throws Exception {
-		@SuppressWarnings("rawtypes")
-		ResponseEntity<Map> entity = this.testRestTemplate.getForEntity(
-				"http://localhost:" + this.mgt + "/actuator/info", Map.class);
-
-		then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-	}
+//	@Test
+//	public void shouldReturn200WhenSendingRequestToManagementEndpoint() throws Exception {
+//		@SuppressWarnings("rawtypes")
+//		ResponseEntity<Map> entity = this.testRestTemplate.getForEntity(
+//				"http://localhost:" + this.mgt + "/actuator/info", Map.class);
+//
+//		then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+//	}
 
 }
